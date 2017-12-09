@@ -1,0 +1,23 @@
+version: 0.2
+# See http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-syntax for more info.
+phases:
+  install:
+    commands:
+      - echo "I'm a command in the 'install' phase!"
+  pre_build:
+    commands:
+      - echo "I'm a command in the 'pre_build' phase!"
+  build:
+    commands:
+      - echo "I'm a command in the 'build' phase!"
+      - mkdir artifacts
+      - echo "One!" > artifacts/1.txt
+      - echo "Two!" > artifacts/2.txt
+      - echo "Three!" > artifacts/3.txt
+  post_build:
+    commands:
+      - echo "I'm a command in the 'post_build' phase!"
+      - tar -czvf artifacts.tgz artifacts
+artifacts:
+  files:
+    - artifacts.tgz
